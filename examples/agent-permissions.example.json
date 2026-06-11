@@ -1,0 +1,34 @@
+{
+  "permissioning_version": "0.1",
+  "owner": "example.com",
+  "updated": "2026-06-11",
+  "default": { "read": "allow", "write": "deny", "execute": "deny" },
+  "rules": [
+    {
+      "id": "crm-read",
+      "resource": "api.example.com/crm/*",
+      "actions": ["read"],
+      "effect": "allow"
+    },
+    {
+      "id": "email-draft-only",
+      "resource": "api.example.com/mail/*",
+      "actions": ["create:draft"],
+      "effect": "allow",
+      "conditions": { "deny_actions": ["send", "delete"] }
+    },
+    {
+      "id": "payments-human-gate",
+      "resource": "api.example.com/payments/*",
+      "actions": ["write", "execute"],
+      "effect": "require_approval",
+      "approval": { "type": "human", "timeout_s": 3600 }
+    }
+  ],
+  "audit": {
+    "required": true,
+    "fields": ["agent_id", "principal", "action", "resource", "timestamp", "task_context"],
+    "sink": "https://example.com/agent-audit"
+  },
+  "contact": "security@example.com"
+}
