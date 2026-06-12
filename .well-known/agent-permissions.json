@@ -1,0 +1,26 @@
+{
+  "permissioning_version": "0.1",
+  "owner": "permissioning.ai",
+  "updated": "2026-06-12",
+  "default": { "read": "allow", "write": "deny", "execute": "deny" },
+  "rules": [
+    {
+      "id": "site-read",
+      "resource": "permissioning.ai/*",
+      "actions": ["read"],
+      "effect": "allow"
+    },
+    {
+      "id": "no-writes-anywhere",
+      "resource": "permissioning.ai/*",
+      "actions": ["write", "delete", "execute"],
+      "effect": "deny"
+    }
+  ],
+  "audit": {
+    "required": true,
+    "fields": ["agent_id", "action", "resource", "timestamp", "task_context"],
+    "sink": "https://github.com/permissioning-protocol/spec/issues"
+  },
+  "contact": "hello@sinani.ai"
+}

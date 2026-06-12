@@ -1,0 +1,80 @@
+{
+  "_comment": "Filesystem globs as `resource` values are a v0.1 extension under discussion (spec §6, open question 3). The base spec defines resources as hostname/path globs or MCP tool names; this manifest applies the same first-match-wins semantics to a local filesystem, governing a coding agent's file operations.",
+  "permissioning_version": "0.1",
+  "owner": "uljan-sinani/coding-agent",
+  "updated": "2026-06-12",
+  "default": { "read": "allow", "write": "deny", "execute": "deny" },
+  "rules": [
+    {
+      "id": "deny-read-env",
+      "resource": "**/.env",
+      "actions": ["read"],
+      "effect": "deny"
+    },
+    {
+      "id": "deny-read-git-objects",
+      "resource": "**/.git/objects/**",
+      "actions": ["read"],
+      "effect": "deny"
+    },
+    {
+      "id": "deny-read-secrets",
+      "resource": "**/secrets/**",
+      "actions": ["read"],
+      "effect": "deny"
+    },
+    {
+      "id": "deny-read-pem",
+      "resource": "**/*.pem",
+      "actions": ["read"],
+      "effect": "deny"
+    },
+    {
+      "id": "deny-read-node-modules",
+      "resource": "**/node_modules/**",
+      "actions": ["read"],
+      "effect": "deny"
+    },
+    {
+      "id": "deny-read-venv",
+      "resource": "**/.venv/**",
+      "actions": ["read"],
+      "effect": "deny"
+    },
+    {
+      "id": "delete-human-gate",
+      "resource": "**",
+      "actions": ["delete"],
+      "effect": "require_approval",
+      "approval": { "type": "human", "timeout_s": 3600 }
+    },
+    {
+      "id": "allow-write-src",
+      "resource": "src/**",
+      "actions": ["write"],
+      "effect": "allow"
+    },
+    {
+      "id": "allow-write-tests",
+      "resource": "tests/**",
+      "actions": ["write"],
+      "effect": "allow"
+    },
+    {
+      "id": "allow-write-docs",
+      "resource": "docs/**",
+      "actions": ["write"],
+      "effect": "allow"
+    },
+    {
+      "id": "allow-write-readme",
+      "resource": "README.md",
+      "actions": ["write"],
+      "effect": "allow"
+    }
+  ],
+  "audit": {
+    "required": true,
+    "fields": ["agent_id", "action", "resource", "timestamp", "task_context"]
+  }
+}
