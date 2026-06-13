@@ -1,0 +1,44 @@
+{
+  "_comment": "Filesystem-glob resources are a v0.1 extension used by the reference fs_guard. This quickstart demonstrates check-point enforcement, not OS-level sandboxing.",
+  "permissioning_version": "0.1",
+  "owner": "permissioning-protocol/quickstart",
+  "updated": "2026-06-13",
+  "default": { "read": "allow", "write": "deny", "execute": "deny" },
+  "rules": [
+    {
+      "id": "deny-read-env",
+      "resource": "**/.env",
+      "actions": ["read"],
+      "effect": "deny"
+    },
+    {
+      "id": "allow-read-docs",
+      "resource": "docs/**",
+      "actions": ["read"],
+      "effect": "allow"
+    },
+    {
+      "id": "allow-write-src",
+      "resource": "src/**",
+      "actions": ["write"],
+      "effect": "allow"
+    },
+    {
+      "id": "deny-write-config",
+      "resource": "config/**",
+      "actions": ["write"],
+      "effect": "deny"
+    },
+    {
+      "id": "approval-delete",
+      "resource": "**",
+      "actions": ["delete"],
+      "effect": "require_approval",
+      "approval": { "type": "human", "timeout_s": 3600 }
+    }
+  ],
+  "audit": {
+    "required": true,
+    "fields": ["agent_id", "action", "resource", "timestamp", "task_context"]
+  }
+}
