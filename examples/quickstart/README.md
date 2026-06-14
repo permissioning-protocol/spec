@@ -8,6 +8,8 @@ cd spec
 python3 examples/quickstart/demo.py
 ```
 
+**No dependencies required.** The quickstart runs the stdlib-only filesystem guard (`reference/fs_guard.py`) — Python 3 is the only requirement. You do **not** need to `pip install` anything. The packages in `requirements.txt` (FastAPI / httpx / uvicorn / starlette) are only for the HTTP middleware (`reference/middleware.py`) and its test suite, not for this quickstart.
+
 ## What you just saw
 
 The demo loads a small filesystem-glob manifest (`agent-permissions.json`) and runs five labelled checks through the reference `fs_guard`. Each check is a check-point authorization decision — `allow`, `deny`, or `require_approval` — and every decision is appended to an audit log that the demo prints at the end. The five checks are:

@@ -1,0 +1,10 @@
+# Internal decision/scout reports — never publish to the public Pages site
+Reports/
+
+# Python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# OS noise
+.DS_Store

@@ -45,4 +45,4 @@ The denied `.env` read is the line that matters: a rule that lived in prose for 
 
 ---
 
-Deployment count of this protocol is now 2. Both deployments govern the author.
+At least two deployments of this protocol are documented publicly (this site's own `.well-known` manifest and the coding-agent manifest above). Additional local dogfood deployments exist but are not yet published as public case studies. Every documented deployment governs the author.
