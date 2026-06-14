@@ -1,0 +1,39 @@
+{
+  "_comment": "Demo manifest for the runnable HTTP enforcement demo. Host-agnostic resource globs (leading '*') so rules match whether you curl localhost or 127.0.0.1. conditions are intentionally omitted: the v0.1 reference middleware does not evaluate them.",
+  "permissioning_version": "0.1",
+  "owner": "permissioning-protocol/middleware-demo",
+  "updated": "2026-06-14",
+  "default": { "read": "allow", "write": "deny", "execute": "deny" },
+  "rules": [
+    {
+      "id": "crm-read",
+      "resource": "*/crm/*",
+      "actions": ["read"],
+      "effect": "allow"
+    },
+    {
+      "id": "crm-write-deny",
+      "resource": "*/crm/*",
+      "actions": ["write"],
+      "effect": "deny"
+    },
+    {
+      "id": "email-draft-only",
+      "resource": "*/mail/*",
+      "actions": ["create:draft"],
+      "effect": "allow"
+    },
+    {
+      "id": "payments-human-gate",
+      "resource": "*/payments/*",
+      "actions": ["write", "execute"],
+      "effect": "require_approval",
+      "approval": { "type": "human", "timeout_s": 3600 }
+    }
+  ],
+  "audit": {
+    "required": true,
+    "fields": ["agent_id", "action", "resource", "timestamp", "task_context"]
+  },
+  "contact": "hello@sinani.ai"
+}
