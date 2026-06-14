@@ -1,0 +1,4 @@
+{"jsonrpc": "2.0", "id": "demo-1", "method": "tools/call", "params": {"name": "crm.read_contacts", "arguments": {"account_id": "demo"}}, "agent_id": "demo-agent"}
+{"jsonrpc": "2.0", "id": "demo-2", "method": "tools/call", "params": {"name": "crm.delete_contacts", "arguments": {"account_id": "demo"}}, "agent_id": "demo-agent"}
+{"jsonrpc": "2.0", "id": "demo-3", "method": "tools/call", "params": {"name": "payments.transfer", "arguments": {"amount": 500, "currency": "USD"}}, "agent_id": "demo-agent"}
+{"jsonrpc": "2.0", "id": "demo-4", "method": "tools/call", "params": {"name": "files.delete_all", "arguments": {"path": "/"}}, "agent_id": "demo-agent"}

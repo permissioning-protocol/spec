@@ -1,0 +1,32 @@
+{
+  "_comment": "MCP-shaped demo manifest. Resources use mcp://server/resource. First-match-wins. conditions are intentionally omitted; this demo evaluates rule effects only. No identity/auth/crypto fields.",
+  "permissioning_version": "0.1",
+  "owner": "permissioning-protocol/mcp-permission-shim",
+  "updated": "2026-06-14",
+  "default": { "read": "allow", "write": "deny", "execute": "deny", "delete": "deny" },
+  "rules": [
+    {
+      "id": "crm-contacts-read",
+      "resource": "mcp://crm/contacts",
+      "actions": ["read"],
+      "effect": "allow"
+    },
+    {
+      "id": "crm-delete-deny",
+      "resource": "mcp://crm/contacts",
+      "actions": ["delete"],
+      "effect": "deny"
+    },
+    {
+      "id": "payments-human-gate",
+      "resource": "mcp://payments/transfer",
+      "actions": ["write", "execute"],
+      "effect": "require_approval",
+      "approval": { "type": "human", "timeout_s": 3600 }
+    }
+  ],
+  "audit": {
+    "required": true,
+    "fields": ["agent_id", "tool", "action", "resource", "timestamp", "task_context"]
+  }
+}

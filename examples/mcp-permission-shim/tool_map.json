@@ -1,0 +1,6 @@
+{
+  "_comment": "Static, demo-only mapping from MCP tool name to a semantic (action, resource) pair. Resources use the mcp://server/resource form aligned with spec v0.1 (mcp:server-name/tool-name). This is a demo convenience, not a standardized tool-name ontology. Tools absent from this map are denied by default by the shim.",
+  "crm.read_contacts": { "action": "read", "resource": "mcp://crm/contacts" },
+  "crm.delete_contacts": { "action": "delete", "resource": "mcp://crm/contacts" },
+  "payments.transfer": { "action": "write", "resource": "mcp://payments/transfer" }
+}
